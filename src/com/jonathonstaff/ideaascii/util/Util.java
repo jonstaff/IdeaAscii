@@ -12,7 +12,7 @@ import java.net.URLEncoder;
 public class Util {
 
     public static String convertTextToAscii(String text) {
-        return convertTextToAscii(new StringBuilder(text).reverse().toString(), "ivrit");
+        return convertTextToAsciiCommented(new StringBuilder(text).reverse().toString(), "ivrit");
     }
 
     public static String convertTextToAscii(String text, String font) {
@@ -38,5 +38,11 @@ public class Util {
             e.printStackTrace();
         }
         return encodedStr;
+    }
+
+    public static String convertTextToAsciiCommented(String text, String font) {
+        StringBuilder ascii = new StringBuilder(convertTextToAscii(text, font));
+        ascii.insert(0, "//");
+        return ascii.toString().replace("\n", "\n//");
     }
 }
