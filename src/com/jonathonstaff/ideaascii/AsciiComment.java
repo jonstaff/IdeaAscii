@@ -1,12 +1,15 @@
 package com.jonathonstaff.ideaascii;
 
+import com.intellij.ide.impl.DataManagerImpl;
 import com.intellij.openapi.actionSystem.AnAction;
 import com.intellij.openapi.actionSystem.AnActionEvent;
+import com.intellij.openapi.actionSystem.DataContext;
 import com.intellij.openapi.actionSystem.PlatformDataKeys;
 import com.intellij.openapi.application.ApplicationManager;
 import com.intellij.openapi.command.CommandProcessor;
 import com.intellij.openapi.editor.Document;
 import com.intellij.openapi.editor.Editor;
+import com.intellij.openapi.editor.LogicalPosition;
 import com.intellij.openapi.fileEditor.FileDocumentManager;
 import com.intellij.openapi.fileEditor.FileEditorManager;
 import com.intellij.openapi.project.Project;
@@ -25,10 +28,8 @@ import java.io.IOException;
 public class AsciiComment extends AnAction {
 
 	public void actionPerformed(AnActionEvent e) {
-        System.out.println("action started");
+		System.out.println("action started");
 		final Project project = e.getProject();
-		String txt = Messages.showInputDialog(project, "What is your name?", "Input your name", Messages.getQuestionIcon());
-		Messages.showMessageDialog(project, "Hello, " + txt + "!\n I am glad to see you.", "Information", Messages.getInformationIcon());
 
 		if (project == null) {
 			return;
@@ -41,30 +42,12 @@ public class AsciiComment extends AnAction {
 
 		final Document document = editor.getDocument();
 
-		VirtualFile virtualFile = FileDocumentManager.getInstance().getFile(document);
-		if (virtualFile == null) {
-			return;
-		}
-		final String contents;
-
-		try {
-			BufferedReader br = new BufferedReader(new FileReader(virtualFile.getPath()));
-			String currentLine;
-			StringBuilder stringBuilder = new StringBuilder();
-			while ((currentLine = br.readLine()) != null) {
-				stringBuilder.append(currentLine);
-				stringBuilder.append("\n");
-			}
-			contents = stringBuilder.toString();
-		}
-		catch (IOException e1) {
-			return;
-		}
+		final int offset = editor.getCaretModel().getOffset();
 
 		final Runnable readRunner = new Runnable() {
 			@Override
 			public void run() {
-				document.setText(contents);
+				document.insertString(offset, "waaaaaattttt?");
 			}
 		};
 
