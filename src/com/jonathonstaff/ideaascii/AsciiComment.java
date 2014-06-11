@@ -8,6 +8,8 @@ import com.intellij.openapi.editor.Document;
 import com.intellij.openapi.editor.Editor;
 import com.intellij.openapi.fileEditor.FileEditorManager;
 import com.intellij.openapi.project.Project;
+import com.intellij.openapi.ui.Messages;
+import com.jonathonstaff.ideaascii.util.Util;
 
 //  Created by jonstaff on 6/11/14.
 
@@ -18,6 +20,8 @@ public class AsciiComment extends AnAction {
 		if (project == null) {
 			return;
 		}
+
+        final String txt = Messages.showInputDialog(project, "ASCII text", "ASCII text", Messages.getQuestionIcon());
 
 		Editor editor = FileEditorManager.getInstance(project).getSelectedTextEditor();
 		if (editor == null) {
@@ -30,7 +34,7 @@ public class AsciiComment extends AnAction {
 		final Runnable readRunner = new Runnable() {
 			@Override
 			public void run() {
-				document.insertString(offset, "waaaaaattttt?");
+				document.insertString(offset, Util.convertTextToAscii(txt));
 			}
 		};
 

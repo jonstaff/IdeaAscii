@@ -12,7 +12,7 @@ import java.net.URLEncoder;
 public class Util {
 
     public static String convertTextToAscii(String text) {
-        return convertTextToAscii(text, "ivrit");
+        return convertTextToAscii(new StringBuilder(text).reverse().toString(), "ivrit");
     }
 
     public static String convertTextToAscii(String text, String font) {
