@@ -1,17 +1,16 @@
 <idea-plugin version="2">
-  <id>com.yourcompany.unique.plugin.id</id>
-  <name>Plugin display name here</name>
+  <id>com.jonathonstaff.ideaascii</id>
+  <name>IdeaAscii</name>
   <version>1.0</version>
-  <vendor email="support@yourcompany.com" url="http://www.yourcompany.com">YourCompany</vendor>
+  <vendor email="jon@nplexity.com" url="http://www.jonathonstaff.com">Jonathon Staff</vendor>
 
   <description><![CDATA[
-      Enter short description for your plugin here.<br>
-      <em>most HTML tags may be used</em>
+      IdeaAscii is a simple plugin that allows you to easily add comments (typically section headers/breaks) in ASCII text.<br>
+      Check out the repo on GitHub for more details:<br>
+      <a href="https://github.com/jonstaff/IdeaAscii">https://github.com/jonstaff/IdeaAscii</a>
     ]]></description>
 
   <change-notes><![CDATA[
-      Add change notes here.<br>
-      <em>most HTML tags may be used</em>
     ]]>
   </change-notes>
 
