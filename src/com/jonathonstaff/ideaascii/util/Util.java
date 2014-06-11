@@ -6,21 +6,37 @@ import org.apache.commons.httpclient.HttpClient;
 import org.apache.commons.httpclient.methods.GetMethod;
 
 import java.io.IOException;
+import java.io.UnsupportedEncodingException;
+import java.net.URLEncoder;
 
 public class Util {
 
     public static String convertTextToAscii(String text) {
-        HttpClient client = new HttpClient();
-        GetMethod get = new GetMethod("http://artii.herokuapp.com/make?text=hello+my+name+is+jon&font=ivrit");
+        return convertTextToAscii(text, "ivrit");
+    }
 
+    public static String convertTextToAscii(String text, String font) {
+        HttpClient client = new HttpClient();
+        GetMethod get = new GetMethod("http://artii.herokuapp.com/make?text=" + urlEncodedString(text) + "&font=" + font);
+
+        String response = "Something went wrong...";
         try {
             client.executeMethod(get);
-            System.out.println("get request body:");
-            System.out.println(get.getResponseBodyAsString());
+            response = get.getResponseBodyAsString();
         } catch (IOException e1) {
             e1.printStackTrace();
         }
-        return "hello";
+
+        return response;
     }
 
+    public static String urlEncodedString(String str) {
+        String encodedStr = "";
+        try {
+            encodedStr = URLEncoder.encode(str, "UTF-8");
+        } catch (UnsupportedEncodingException e) {
+            e.printStackTrace();
+        }
+        return encodedStr;
+    }
 }
