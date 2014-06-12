@@ -20,7 +20,8 @@ public class Util {
         GetMethod get = new GetMethod("http://artii.herokuapp.com/make?text="
                 + urlEncodedString(text) + "&font=" + font);
 
-        String response = "Something went wrong...";
+        String response = "Something went wrong...\nThis plugin requires an Internet connection " +
+                "- please ensure you have one.";
         try {
             client.executeMethod(get);
             response = get.getResponseBodyAsString();

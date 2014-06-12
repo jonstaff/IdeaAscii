@@ -21,7 +21,7 @@ public class AsciiComment extends AnAction {
 			return;
 		}
 
-        final String txt = Messages.showInputDialog(project, "ASCII text", "ASCII text", Messages.getQuestionIcon());
+        final String txt = Messages.showInputDialog(project, null, "ASCII Text", null);
 
 		Editor editor = FileEditorManager.getInstance(project).getSelectedTextEditor();
 		if (editor == null) {
