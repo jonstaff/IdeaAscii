@@ -12,9 +12,9 @@ public class AsciiFontSelector extends AnAction {
 
     @Override
     public void actionPerformed(AnActionEvent event) {
-        String font = Messages.showEditableChooseDialog(null, "Select Font", null, fonts,
-                "rounded", null);
         PropertiesComponent prop = PropertiesComponent.getInstance();
+        String font = Messages.showEditableChooseDialog(null, "Select Font", null, fonts,
+                prop.getValue(Util.KEY_FONT, "rounded"), null);
         prop.setValue(Util.KEY_FONT, font);
     }
 
