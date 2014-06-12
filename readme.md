@@ -6,7 +6,7 @@ IdeaAscii is an IntelliJ plugin to generate comments as ASCII artwork.
 Installation
 ------------
 
-Patience. This will come in time.
+'Preferences > Plugins > Browse repositories... > Search for "IdeaAscii" > Install Plugin'
 
 Usage
 -----
