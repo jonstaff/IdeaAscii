@@ -15,39 +15,39 @@ import com.jonathonstaff.ideaascii.util.Util;
 
 public class AsciiComment extends AnAction {
 
-	public void actionPerformed(AnActionEvent e) {
-		final Project project = e.getProject();
-		if (project == null) {
-			return;
-		}
+    public void actionPerformed(AnActionEvent e) {
+        final Project project = e.getProject();
+        if (project == null) {
+            return;
+        }
 
         final String txt = Messages.showInputDialog(project, null, "ASCII Text", null);
 
-		Editor editor = FileEditorManager.getInstance(project).getSelectedTextEditor();
-		if (editor == null) {
-			return;
-		}
+        Editor editor = FileEditorManager.getInstance(project).getSelectedTextEditor();
+        if (editor == null) {
+            return;
+        }
 
-		final Document document = editor.getDocument();
-		final int offset = editor.getCaretModel().getOffset();
+        final Document document = editor.getDocument();
+        final int offset = editor.getCaretModel().getOffset();
 
-		final Runnable readRunner = new Runnable() {
-			@Override
-			public void run() {
-				document.insertString(offset, Util.convertTextToAscii(txt));
-			}
-		};
+        final Runnable readRunner = new Runnable() {
+            @Override
+            public void run() {
+                document.insertString(offset, Util.convertTextToAscii(txt));
+            }
+        };
 
-		ApplicationManager.getApplication().invokeLater(new Runnable() {
-			@Override
-			public void run() {
-				CommandProcessor.getInstance().executeCommand(project, new Runnable() {
-					@Override
-					public void run() {
-						ApplicationManager.getApplication().runWriteAction(readRunner);
-					}
-				}, "IdeaAscii", null);
-			}
-		});
-	}
+        ApplicationManager.getApplication().invokeLater(new Runnable() {
+            @Override
+            public void run() {
+                CommandProcessor.getInstance().executeCommand(project, new Runnable() {
+                    @Override
+                    public void run() {
+                        ApplicationManager.getApplication().runWriteAction(readRunner);
+                    }
+                }, "IdeaAscii", null);
+            }
+        });
+    }
 }

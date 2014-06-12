@@ -1,47 +1,54 @@
 <idea-plugin version="2">
-  <id>com.jonathonstaff.ideaascii</id>
-  <name>IdeaAscii</name>
-  <version>1.0</version>
-  <vendor email="jon@nplexity.com" url="http://www.jonathonstaff.com">Jonathon Staff</vendor>
+    <id>com.jonathonstaff.ideaascii</id>
+    <name>IdeaAscii</name>
+    <version>1.0</version>
+    <vendor email="jon@nplexity.com" url="http://www.jonathonstaff.com">Jonathon Staff</vendor>
 
-  <description><![CDATA[
+    <description><![CDATA[
       IdeaAscii is a simple plugin that allows you to easily add comments (typically section headers/breaks) in ASCII text.<br>
       Check out the repo on GitHub for more details:<br>
       <a href="https://github.com/jonstaff/IdeaAscii">https://github.com/jonstaff/IdeaAscii</a>
     ]]></description>
 
-  <change-notes><![CDATA[
-    ]]>
-  </change-notes>
+    <change-notes><![CDATA[
+            ]]>
+    </change-notes>
 
-  <!-- please see http://confluence.jetbrains.com/display/IDEADEV/Build+Number+Ranges for description -->
-  <idea-version since-build="131"/>
+    <!-- please see http://confluence.jetbrains.com/display/IDEADEV/Build+Number+Ranges for description -->
+    <idea-version since-build="131"/>
 
-  <!-- please see http://confluence.jetbrains.com/display/IDEADEV/Plugin+Compatibility+with+IntelliJ+Platform+Products
-       on how to target different products -->
-  <!-- uncomment to enable plugin in all products
-  <depends>com.intellij.modules.lang</depends>
-  -->
+    <!-- please see http://confluence.jetbrains.com/display/IDEADEV/Plugin+Compatibility+with+IntelliJ+Platform+Products
+         on how to target different products -->
+    <!-- uncomment to enable plugin in all products
+    <depends>com.intellij.modules.lang</depends>
+    -->
 
-  <extensions defaultExtensionNs="com.intellij">
-    <!-- Add your extensions here -->
-  </extensions>
+    <extensions defaultExtensionNs="com.intellij">
+        <!-- Add your extensions here -->
+    </extensions>
 
-  <application-components>
-    <!-- Add your application components here -->
-  </application-components>
+    <application-components>
+        <!-- Add your application components here -->
+    </application-components>
 
-  <project-components>
-    <!-- Add your project components here -->
-  </project-components>
+    <project-components>
+        <!-- Add your project components here -->
+    </project-components>
 
-  <actions>
-    <!-- Add your actions here -->
-      <action id="com.jonathonstaff.ideaascii.AsciiComment" class="com.jonathonstaff.ideaascii.AsciiComment" text="Insert Ascii Comment"
-              description="Converts text to ascii art and inserts it as a comment.">
-          <add-to-group group-id="ToolsMenu" anchor="last"/>
-          <keyboard-shortcut keymap="$default" first-keystroke="shift meta I"/>
-      </action>
-  </actions>
+    <actions>
+        <action id="com.jonathonstaff.ideaascii.AsciiComment"
+                class="com.jonathonstaff.ideaascii.AsciiComment"
+                text="Insert Ascii Comment"
+                description="Converts text to ascii art and inserts it as a comment.">
+            <add-to-group group-id="ToolsMenu" anchor="last"/>
+            <keyboard-shortcut keymap="$default" first-keystroke="shift meta I"/>
+        </action>
+        <action id="com.jonathonstaff.ideaascii.AsciiFontSelector"
+                class="com.jonathonstaff.ideaascii.AsciiFontSelector"
+                text="Select Ascii Font"
+                description="Select the font to be used for IdeaAscii.">
+            <add-to-group group-id="ToolsMenu" anchor="last"/>
+        </action>
+    </actions>
 
 </idea-plugin>

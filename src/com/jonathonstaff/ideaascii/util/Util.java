@@ -2,6 +2,8 @@ package com.jonathonstaff.ideaascii.util;
 
 //  Created by jonstaff on 6/11/14.
 
+import com.intellij.ide.util.PropertiesComponent;
+
 import org.apache.commons.httpclient.HttpClient;
 import org.apache.commons.httpclient.methods.GetMethod;
 
@@ -11,8 +13,16 @@ import java.net.URLEncoder;
 
 public class Util {
 
+    public static final String KEY_FONT = "ascii_font";
+
     public static String convertTextToAscii(String text) {
-        return convertTextToAsciiCommented(new StringBuilder(text).reverse().toString(), "ivrit");
+        PropertiesComponent prop = PropertiesComponent.getInstance();
+        if (!prop.getValue(KEY_FONT).equals("ivrit")) {
+            return convertTextToAsciiCommented(text, prop.getValue(KEY_FONT));
+        } else {
+            return convertTextToAsciiCommented(new StringBuilder(text).reverse().toString(),
+                    "ivrit");
+        }
     }
 
     public static String convertTextToAscii(String text, String font) {
