@@ -17,7 +17,7 @@ public class Util {
 
     public static String convertTextToAscii(String text) {
         PropertiesComponent prop = PropertiesComponent.getInstance();
-        if (!prop.getValue(KEY_FONT).equals("ivrit")) {
+        if (!prop.getValue(KEY_FONT, "ivrit").equals("ivrit")) {
             return convertTextToAsciiCommented(text, prop.getValue(KEY_FONT));
         } else {
             return convertTextToAsciiCommented(new StringBuilder(text).reverse().toString(),
