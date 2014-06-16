@@ -3,6 +3,8 @@ IdeaAscii
 
 IdeaAscii is an IntelliJ plugin to generate comments as ASCII artwork.
 
+![IdeaAscii in action](IdeaAscii.gif "IdeaAscii in action")
+
 Installation
 ------------
 
