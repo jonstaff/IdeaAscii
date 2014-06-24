@@ -3,26 +3,26 @@ IdeaAscii
 
 IdeaAscii is an IntelliJ plugin to generate comments as ASCII artwork.
 
-![IdeaAscii in action](IdeaAscii.gif "IdeaAscii in action")
+![IdeaAscii in action](IdeaAscii.gif)
 
 Installation
 ------------
 
-'Preferences > Plugins > Browse repositories... > Search for "IdeaAscii" > Install Plugin'
+`Preferences > Plugins > Browse repositories... > Search for "IdeaAscii" > Install Plugin`
 
 Usage
 -----
 
 Locate your cursor where you would like to add a comment/heading, and press `ctrl shift I`.  Type in the text you would like generated, and hit enter.  Your text will be converted to ASCII and automatically commented.
 
-Alternatively, you can go to 'Tools > Insert Ascii Comment'.
+Alternatively, you can go to `Tools > Insert Ascii Comment`.
 
 Configuration
 -------------
 
-You can change the font by going to 'Tools > Select Ascii Font'.  Whichever item you select from the dropdown menu will become the font used until you change it.
+You can change the font by going to `Tools > Select Ascii Font`.  The item you select from the dropdown menu will become the font used until you change it.
 
-The default font is 'irvit' simply because that's what I've used before and like the way it looks.  For some reason, this particular font always seems to be generated in reverse, so I've fixed that interally.  If you notice any other fonts that are rending backwards, please let me know.
+The default font is 'irvit' simply because that's what I've used before and like the way it looks.  For some reason, this particular font always seems to be generated in reverse, so I've fixed that interally.  If you notice any other fonts that are rending backward, please let me know.
 
 Developed By
 ------------
