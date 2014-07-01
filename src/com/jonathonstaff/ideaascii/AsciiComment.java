@@ -33,35 +33,22 @@ public class AsciiComment extends AnAction {
         // Get the selection model
         final SelectionModel selectionModel = editor.getSelectionModel();
 
-        // Check if we have selected text
-        if (selectionModel.hasSelection()) {
+        // Check if we have selected text, and if not, select the current line
+        if (!selectionModel.hasSelection())
+            selectionModel.selectLineAtCaret();
 
-            String selectedText = selectionModel.getSelectedText();
+        // Get the selected text
+        String selectedText = selectionModel.getSelectedText();
 
-            /* If no text is selected, we will select the whole line,
-               and if the line is empty, we'll just return an empty string */
-            if (selectedText == null) {
+        // Prepare the selected text (if it exists and is not empty)
+        if ( (selectedText != null) && (!selectedText.isEmpty()) ) {
 
-                // Select the line
-                selectionModel.selectLineAtCaret();
-                selectedText = selectionModel.getSelectedText();
+            // Trim the selected text
+            selectedText = selectedText.trim();
 
-                if (selectedText == null)
-                    selectedText = "";
-
-            }
-
-            // Prepare the selected text
-            if (!selectedText.isEmpty()) {
-
-                // Trim the selected text
-                selectedText = selectedText.trim();
-
-                // If there are many lines in this selected text, only return the first one
-                if (selectedText.contains("\n"))
-                    selectedText = selectedText.substring(0, selectedText.indexOf("\n"));
-
-            }
+            // If there are many lines in this selected text, only return the first one
+            if (selectedText.contains("\n"))
+                selectedText = selectedText.substring(0, selectedText.indexOf("\n"));
 
             initialValue = selectedText;
 
