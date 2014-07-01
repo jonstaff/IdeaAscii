@@ -1,6 +1,7 @@
 package com.jonathonstaff.ideaascii.util;
 
 //  Created by jonstaff on 6/11/14.
+//  Edited by kjarrio on 2014-07-01
 
 import com.intellij.ide.util.PropertiesComponent;
 
@@ -15,13 +16,12 @@ public class Util {
 
     public static final String KEY_FONT = "ascii_font";
 
-    public static String convertTextToAscii(String text) {
+    public static String convertTextToAscii(String text, int indentLength) {
         PropertiesComponent prop = PropertiesComponent.getInstance();
         if (!prop.getValue(KEY_FONT, "ivrit").equals("ivrit")) {
-            return convertTextToAsciiCommented(text, prop.getValue(KEY_FONT));
+            return convertTextToAsciiCommented(text, prop.getValue(KEY_FONT), indentLength);
         } else {
-            return convertTextToAsciiCommented(new StringBuilder(text).reverse().toString(),
-                    "ivrit");
+            return convertTextToAsciiCommented(new StringBuilder(text).reverse().toString(), "ivrit", indentLength);
         }
     }
 
@@ -54,9 +54,16 @@ public class Util {
         return encodedStr;
     }
 
-    public static String convertTextToAsciiCommented(String text, String font) {
+    public static String convertTextToAsciiCommented(String text, String font, int indentLength) {
+        
+        // Create the ascii String Builder
         StringBuilder ascii = new StringBuilder(convertTextToAscii(text, font));
-        ascii.insert(0, "//");
-        return ascii.toString().replace("\n", "\n//");
+        ascii.insert(0, "// ");
+
+        // Set the indent
+        String indent = "";
+        for (int a=0; a<indentLength; a++) indent += " ";
+
+        return ascii.toString().replace("\n", "\n"+indent+"// ");
     }
 }

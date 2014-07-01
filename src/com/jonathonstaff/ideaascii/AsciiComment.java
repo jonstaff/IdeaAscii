@@ -6,35 +6,91 @@ import com.intellij.openapi.application.ApplicationManager;
 import com.intellij.openapi.command.CommandProcessor;
 import com.intellij.openapi.editor.Document;
 import com.intellij.openapi.editor.Editor;
+import com.intellij.openapi.editor.SelectionModel;
 import com.intellij.openapi.fileEditor.FileEditorManager;
 import com.intellij.openapi.project.Project;
 import com.intellij.openapi.ui.Messages;
 import com.jonathonstaff.ideaascii.util.Util;
 
 //  Created by jonstaff on 6/11/14.
+//  Edited by kjarrio on 2014-07-01
 
 public class AsciiComment extends AnAction {
 
     public void actionPerformed(AnActionEvent e) {
+
+        // Get the current Project
         final Project project = e.getProject();
-        if (project == null) {
-            return;
+        if (project == null) return;
+
+        // Get the editor
+        final Editor editor = FileEditorManager.getInstance(project).getSelectedTextEditor();
+        if (editor == null) return;
+
+        // Set the initial value
+        String initialValue = "";
+
+        // Get the selection model
+        final SelectionModel selectionModel = editor.getSelectionModel();
+
+        // Check if we have selected text, and if not, select the current line
+        if (!selectionModel.hasSelection())
+            selectionModel.selectLineAtCaret();
+
+        // Get the selected text
+        String selectedText = selectionModel.getSelectedText();
+
+        // Prepare the selected text (if it exists and is not empty)
+        if ( (selectedText != null) && (!selectedText.isEmpty()) ) {
+
+            // Trim the selected text
+            selectedText = selectedText.trim();
+
+            // If there are many lines in this selected text, only return the first one
+            if (selectedText.contains("\n"))
+                selectedText = selectedText.substring(0, selectedText.indexOf("\n"));
+
+            initialValue = selectedText;
+
         }
 
-        final String txt = Messages.showInputDialog(project, null, "ASCII Text", null);
-
-        Editor editor = FileEditorManager.getInstance(project).getSelectedTextEditor();
-        if (editor == null) {
-            return;
-        }
-
-        final Document document = editor.getDocument();
-        final int offset = editor.getCaretModel().getOffset();
+        // Show the input dialog
+        final String text = Messages.showInputDialog(project, null, "ASCII Text", null, initialValue, null);
 
         final Runnable readRunner = new Runnable() {
             @Override
             public void run() {
-                document.insertString(offset, Util.convertTextToAscii(txt));
+
+                if (text == null) return;
+
+                int offset = editor.getCaretModel().getOffset();
+
+                // Get the document
+                final Document document = editor.getDocument();
+
+                // Check if we should replace the selected text
+                if (selectionModel.hasSelection()) {
+
+                    // Get the start and end position of the selected text
+                    int selectionStart = selectionModel.getSelectionStart();
+                    int selectionEnd = selectionModel.getSelectionEnd();
+
+                    // Remove the selection, and delete the string from the document
+                    selectionModel.removeSelection();
+                    document.deleteString(selectionStart, selectionEnd);
+
+                    // Set the offset to where the selection started
+                    offset = selectionStart;
+
+                }
+
+                int lineNumber = document.getLineNumber(offset);
+                int lineStartOffset = document.getLineStartOffset(lineNumber);
+                int indentLength = offset - lineStartOffset;
+
+                // Insert the string
+                document.insertString(offset, Util.convertTextToAscii(text, indentLength));
+
             }
         };
 
