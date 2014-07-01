@@ -13,6 +13,7 @@ import com.intellij.openapi.ui.Messages;
 import com.jonathonstaff.ideaascii.util.Util;
 
 //  Created by jonstaff on 6/11/14.
+//  Edited by kjarrio on 2014-07-01
 
 public class AsciiComment extends AnAction {
 

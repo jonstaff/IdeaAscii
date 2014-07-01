@@ -1,6 +1,7 @@
 package com.jonathonstaff.ideaascii.util;
 
 //  Created by jonstaff on 6/11/14.
+//  Edited by kjarrio on 2014-07-01
 
 import com.intellij.ide.util.PropertiesComponent;
 
