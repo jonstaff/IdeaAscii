@@ -94,8 +94,12 @@ public class AsciiComment extends AnAction {
 
                 }
 
+                int lineNumber = document.getLineNumber(offset);
+                int lineStartOffset = document.getLineStartOffset(lineNumber);
+                int indentLength = offset - lineStartOffset;
+
                 // Insert the string
-                document.insertString(offset, Util.convertTextToAscii(text));
+                document.insertString(offset, Util.convertTextToAscii(text, indentLength));
 
             }
         };
