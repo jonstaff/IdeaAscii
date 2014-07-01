@@ -55,15 +55,12 @@ public class Util {
     }
 
     public static String convertTextToAsciiCommented(String text, String font, int indentLength) {
-        
-        // Create the ascii String Builder
         StringBuilder ascii = new StringBuilder(convertTextToAscii(text, font));
         ascii.insert(0, "// ");
 
-        // Set the indent
-        String indent = "";
-        for (int a=0; a<indentLength; a++) indent += " ";
+        StringBuilder indent = new StringBuilder();
+        for (int a = 0; a < indentLength; a++) indent.append(" ");
 
-        return ascii.toString().replace("\n", "\n"+indent+"// ");
+        return ascii.toString().replace("\n", "\n" + indent + "// ");
     }
 }

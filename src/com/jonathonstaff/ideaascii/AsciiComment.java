@@ -18,79 +18,55 @@ import com.jonathonstaff.ideaascii.util.Util;
 public class AsciiComment extends AnAction {
 
     public void actionPerformed(AnActionEvent e) {
-
-        // Get the current Project
         final Project project = e.getProject();
         if (project == null) return;
 
-        // Get the editor
         final Editor editor = FileEditorManager.getInstance(project).getSelectedTextEditor();
         if (editor == null) return;
 
-        // Set the initial value
         String initialValue = "";
 
-        // Get the selection model
         final SelectionModel selectionModel = editor.getSelectionModel();
 
-        // Check if we have selected text, and if not, select the current line
-        if (!selectionModel.hasSelection())
+        if (!selectionModel.hasSelection()) {
             selectionModel.selectLineAtCaret();
-
-        // Get the selected text
-        String selectedText = selectionModel.getSelectedText();
-
-        // Prepare the selected text (if it exists and is not empty)
-        if ( (selectedText != null) && (!selectedText.isEmpty()) ) {
-
-            // Trim the selected text
-            selectedText = selectedText.trim();
-
-            // If there are many lines in this selected text, only return the first one
-            if (selectedText.contains("\n"))
-                selectedText = selectedText.substring(0, selectedText.indexOf("\n"));
-
-            initialValue = selectedText;
-
         }
 
-        // Show the input dialog
+        String selectedText = selectionModel.getSelectedText();
+        if ((selectedText != null) && (!selectedText.isEmpty())) {
+            selectedText = selectedText.trim();
+
+            if (selectedText.contains("\n")) {
+                selectedText = selectedText.substring(0, selectedText.indexOf("\n"));
+            }
+
+            initialValue = selectedText;
+        }
+
         final String text = Messages.showInputDialog(project, null, "ASCII Text", null, initialValue, null);
 
         final Runnable readRunner = new Runnable() {
             @Override
             public void run() {
-
                 if (text == null) return;
-
                 int offset = editor.getCaretModel().getOffset();
-
-                // Get the document
                 final Document document = editor.getDocument();
 
                 // Check if we should replace the selected text
                 if (selectionModel.hasSelection()) {
-
-                    // Get the start and end position of the selected text
                     int selectionStart = selectionModel.getSelectionStart();
                     int selectionEnd = selectionModel.getSelectionEnd();
 
-                    // Remove the selection, and delete the string from the document
                     selectionModel.removeSelection();
                     document.deleteString(selectionStart, selectionEnd);
-
-                    // Set the offset to where the selection started
                     offset = selectionStart;
-
                 }
 
                 int lineNumber = document.getLineNumber(offset);
                 int lineStartOffset = document.getLineStartOffset(lineNumber);
                 int indentLength = offset - lineStartOffset;
 
-                // Insert the string
                 document.insertString(offset, Util.convertTextToAscii(text, indentLength));
-
             }
         };
 

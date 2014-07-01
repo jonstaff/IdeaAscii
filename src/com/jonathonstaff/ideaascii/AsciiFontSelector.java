@@ -436,5 +436,4 @@ public class AsciiFontSelector extends AnAction {
             "usaflag",
             "weird",
             "whimsy"};
-
 }
