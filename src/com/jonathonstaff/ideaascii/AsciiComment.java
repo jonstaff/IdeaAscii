@@ -74,6 +74,8 @@ public class AsciiComment extends AnAction {
             @Override
             public void run() {
 
+                if (text == null) return;
+
                 int offset = editor.getCaretModel().getOffset();
 
                 // Get the document
