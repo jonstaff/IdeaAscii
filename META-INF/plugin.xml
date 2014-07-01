@@ -1,7 +1,7 @@
 <idea-plugin version="2">
     <id>com.jonathonstaff.ideaascii</id>
     <name>IdeaAscii</name>
-    <version>1.0</version>
+    <version>1.1</version>
     <vendor email="jon@nplexity.com" url="http://www.jonathonstaff.com">Jonathon Staff</vendor>
 
     <description><![CDATA[
@@ -11,8 +11,21 @@
     ]]></description>
 
     <change-notes><![CDATA[
-            ]]>
-    </change-notes>
+
+      Version 1.1
+      <ul>
+        <li>Support for text on current line</li>
+        <li>Support for indentation</li>
+        <li>Support for selected text</li>
+      </ul>
+
+      Version 1.0
+      <ul>
+        <li>Initial Release</li>
+      </ul>
+
+    ]]></change-notes>
+
 
     <!-- please see http://confluence.jetbrains.com/display/IDEADEV/Build+Number+Ranges for description -->
     <idea-version since-build="131"/>
