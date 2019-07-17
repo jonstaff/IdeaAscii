@@ -29,6 +29,11 @@ Developed By
 
 [Jonathon Staff](http://jonathonstaff.com)
 
+Contributors
+------------
+
+[Kjartan Olason](http://www.kjartan.com.br)
+
 License
 =======
 
