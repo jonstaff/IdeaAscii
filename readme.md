@@ -22,7 +22,7 @@ Configuration
 
 You can change the font by going to `Tools > Select Ascii Font`.  The item you select from the dropdown menu will become the font used until you change it.
 
-The default font is 'irvit' simply because that's what I've used before and like the way it looks.  For some reason, this particular font always seems to be generated in reverse, so I've fixed that interally.  If you notice any other fonts that are rending backward, please let me know.
+The default font is 'ivrit' simply because that's what I've used before and like the way it looks.  For some reason, this particular font always seems to be generated in reverse, so I've fixed that interally.  If you notice any other fonts that are rending backward, please let me know.
 
 Developed By
 ------------
